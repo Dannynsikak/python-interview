@@ -47,7 +47,7 @@ def create_database():
             dbname="postgres",  # Connect to the default 'postgres' database
             user="postgres",
             password="pass123",
-            host="127.0.0.1",
+            host="localhost",
             port="5432"
         )
         conn.autocommit = True  # Allow CREATE DATABASE without transactions
@@ -87,7 +87,7 @@ def save_to_postgresql(colors):
             database="color_analysis",
             user="postgres",
             password="pass123",
-            host="127.0.0.1",
+            host="localhost",
             port="5432"
         )
         print ("Opened database successfully")
@@ -108,7 +108,7 @@ def save_to_postgresql(colors):
         conn.commit()
         cursor.close()
         conn.close()
-        print("Data saved to postgreSQL successfully.")
+        print("Data inserted to postgreSQL successfully.")
     except Exception as e:
         print(f"Failed to save the data to postgreSQL: {e}")
 
@@ -139,33 +139,6 @@ html_content = """
 <html>
 <head>
 <title>Our Python Class exam</title>
-
-<style type="text/css">
-	
-	body{
-		width:1000px;
-		margin: auto;
-	}
-	table,tr,td{
-		border:solid;
-		padding: 5px;
-	}
-	table{
-		border-collapse: collapse;
-		width:100%;
-	}
-	h3{
-		font-size: 25px;
-		color:green;
-		text-align: center;
-		margin-top: 100px;
-	}
-	p{
-		font-size: 18px;
-		font-weight: bold;
-	}
-</style>
-
 </head>
 <body>
 <h3>TABLE SHOWING COLOURS OF DRESS BY WORKERS AT BINCOM ICT FOR THE WEEK</h3>
@@ -219,7 +192,7 @@ prob_red = probability_of_color(colors, "RED")
 # save to postgreSQL
 try:
     save_to_postgresql(colors)
-    print("Data saved to postgreSQL successfully.")
+    print("Colors saved to postgreSQL successfully.")
 except Exception as e:
     print(f"Failed to save the data to postgreSQL: {e}")
 
